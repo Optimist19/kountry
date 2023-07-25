@@ -115,6 +115,15 @@ a{
   text-decoration: none;
 }
 
+
+/* img{
+  transition: 1.5 ease-out;
+} */
+
+img:hover{
+  box-shadow: 2px 2px 2px black;
+}
+
 ul{
   list-style: none;
 }
