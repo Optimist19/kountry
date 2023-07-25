@@ -8,23 +8,25 @@
     </label>
   </div>
   <div class="container">
-    <div class="flags">
-      <div class="hello" v-for="item in data"
-          :key="item.area">
-        <router-link
-          :to="{ name: 'detailsComp', params: { area: item.area } }"
-        >
-        <!-- <div class="short-details"> -->
-          <ul>
-            <img :src="item.flags.png" alt="item.flags.alt" />
-            <li>Country: {{ item.name.common }}</li>
-            <!-- <li>: {{ item.area }}</li> -->
-            <li>Continent: {{ item.continents[0] }}</li>
-          </ul>
-        <!-- </div> -->
-        </router-link>
+    <!-- <transition name="my-trans"> -->
+      <div class="flags">
+        <div class="hello" v-for="item in data"
+            :key="item.area">
+          <router-link
+            :to="{ name: 'detailsComp', params: { area: item.area } }"
+          >
+          <!-- <div class="short-details"> -->
+            <ul>
+              <img :src="item.flags.png" alt="item.flags.alt" />
+              <li>Country: {{ item.name.common }}</li>
+              <!-- <li>: {{ item.area }}</li> -->
+              <li>Continent: {{ item.continents[0] }}</li>
+            </ul>
+          <!-- </div> -->
+          </router-link>
+        </div>
       </div>
-    </div>
+    <!-- </transition> -->
   </div>
 </template>
 
