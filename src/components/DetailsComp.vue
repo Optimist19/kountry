@@ -1,27 +1,66 @@
 <template>
   <div>
-    <!-- <li>{{ result }}</li> -->
-	<!-- The conditional statement is to check if result truly exists, without the the if statement, the code gives an error of null -->
     <ul v-if="result"> 
-      	<li>Name: {{ result.name.common }}</li>
-      	<li>Capital: {{ result.capital[0] }}</li>
-      	<li>Continent: {{ result.continents[0]}}</li>
-		<li>Region: {{ result.region }}</li>
-		<li>Subregion: {{ result.subregion }}</li>
-		<!-- <li>Languages: {{ result.languages.values }}</li> -->
-		<!-- <li v-for="lang in result.languages" :key="lang">
-			Language: {{ lang }}
-		</li> -->
-		<li>Independent: {{ result.independent }}</li>
-		<img :src="result.coatOfArms.svg" alt="">
-		<a href="result.maps.googleMaps" target="_blank">Google Map</a>
-		<li>Population: {{ result.population }}</li>
-		<li>Timezones: {{ result.timezones[0] }} </li>
-      	
-      	<li v-for="currency in result.currencies" :key="currency">
-			<span>{{ currency.name }} {{ currency.symbol }}</span>
-		</li>
-			<!-- <li>Currency Symbol: {{ result.currencies.JOD.symbol }}</li> -->
+      <li>
+        <span>Name:</span> {{ result.name.common }}
+      </li>
+      <li>
+        <span>Capital:</span> {{ result.capital[0] }}
+      </li>
+      <li>
+        <span>Official:</span> {{ result.name.official }}
+      </li>
+      <li>
+        <span>Continent:</span> {{ result.continents[0]}}
+      </li>
+      <li>
+        <span>Region:</span> {{ result.region }}
+      </li>
+      <li>
+        <span>Subregion:</span> {{ result.subregion }}
+      </li>
+      <li for="">
+        <span>Languages: </span>
+        <label v-for="language in result.languages" :key="language">
+          {{ language }},
+        </label>
+      </li>
+      <li>
+        <span>Population:</span> {{ result.population }}
+      </li>
+      <li>
+        <span>Car side:</span> {{ result.car.side }}
+      </li>
+      
+
+      <li>
+        <span>Independent:</span> {{ result.independent }}
+      </li>
+      <li>Coat Of Arm: <img :src="result.coatOfArms.svg" alt="">
+      </li>
+      <li>
+        <a href="result.maps.googleMaps" target="_blank">Google Map</a>
+      </li>
+      <li>
+        <span>Population:</span> {{ result.population }}
+      </li>
+      <li>
+        <span>Timezones:</span> {{ result.timezones[0] }} 
+      </li>
+          
+      <label v-for="currency in result.currencies" :key="currency">
+        <li>
+          <span>Currency Name:</span> {{ currency.name }}
+        </li>
+        <li>
+          <span>Currency Symbol:</span> {{ currency.symbol }}
+        </li>
+      </label>
+
+      <li>
+        <span>Borders:</span>
+        <label v-for="border in result.borders" :key="border">{{ border }}, </label>
+      </li>
     </ul>
   </div>
 </template>
@@ -68,4 +107,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+span{
+  color: red;
+}
+a{
+  color: red;
+  padding-bottom: 2vh;
+}
+
+img, a{
+  width: 5vw;
+  display: block;
+}
+
+li{
+  padding-bottom: 2vh;
+}
+
+li:first-child{
+  margin-top: 2vh;
+}
+
+ul{
+  margin-left: 2vw;
+}
+</style>

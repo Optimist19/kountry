@@ -1,35 +1,35 @@
 <template>
-  <input type="text" v-model="countrySearch" />
-  <!-- <div v-for="list in showCountry" :key="list.area">
-    <ul>
-      <img :src="list.flags.png" alt="" />
-      <li>Country: {{ list.name.common }}</li>
-      <li>Continent: {{ list.continents[0] }}</li>
-      <li>{{ list.area }}</li>
-    </ul>
-  
-  </div> -->
-  
-  <!-- {{data}} -->
-
-  <div class="hello">
-    <router-link
-      :to="{ name: 'detailsComp', params: { area: item.area } }"
-      v-for="item in data"
-      :key="item.area"
-    >
-      <ul>
-        <img :src="item.flags.png" alt="" />
-        <li>Country: {{ item.name.common }}</li>
-        <!-- <li>: {{ item.area }}</li> -->
-        <li>Continent: {{ item.continents[0] }}</li>
-      </ul>
-    </router-link>
-  </div> 
+  <div class="h1">
+    <h1>COUNTRY</h1>
+  </div>
+  <div>
+    <label for="">Search
+      <input type="text" v-model="countrySearch" placeholder="Country" />
+    </label>
+  </div>
+  <div class="container">
+    <div class="flags">
+      <div class="hello" v-for="item in data"
+          :key="item.area">
+        <router-link
+          :to="{ name: 'detailsComp', params: { area: item.area } }"
+        >
+        <!-- <div class="short-details"> -->
+          <ul>
+            <img :src="item.flags.png" alt="item.flags.alt" />
+            <li>Country: {{ item.name.common }}</li>
+            <!-- <li>: {{ item.area }}</li> -->
+            <li>Continent: {{ item.continents[0] }}</li>
+          </ul>
+        <!-- </div> -->
+        </router-link>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { onMounted, watch, reactive, toRefs, ref, computed } from "vue";
+import { onMounted, watch, ref } from "vue";
 import { useStore } from "vuex";
 export default {
   name: "HelloWorld",
@@ -47,10 +47,7 @@ export default {
     })
    })
 
-    // const showCountry = computed(()=>{
-    //   console.log(store.getters.getData, "store");
-    //   return store.getters.getData
-    // })
+
     
     async function onLoad () {
       await store.dispatch("getDataActions");
@@ -67,14 +64,68 @@ export default {
 
     return {
       data,
-      // ...toRefs(showData),
-      countrySearch,
-
-      // showCountry
+      countrySearch
     };
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3vh 0;
+}
+
+h1{
+  font-size: 26px;
+  font-weight: 700;
+}
+
+label{
+  margin: 0 2vw;
+}
+
+input{
+  width: 15vw;
+  padding-left: 1vw;
+  margin: 3vh 0;
+}
+
+input::placeholder{
+  padding: 2vh 0 2vh 1vw;
+}
+.container{
+  max-width: 100%;
+}
+
+.flags{
+  display: flex;
+  gap: 2vh 4vw;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+ul{
+  list-style: none;
+}
+
+@media screen and (max-width: 768px){
+  .flags{
+    display: flex;
+    gap: 2vh 4vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+</style>
