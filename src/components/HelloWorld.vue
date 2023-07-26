@@ -10,7 +10,10 @@
   <div class="container">
     <!-- <transition name="my-trans"> -->
       <div class="flags">
-        <div class="hello" v-for="item in data"
+        <div class="isloading" v-if="isLoading">
+            <p>Loading</p>
+        </div>
+        <div v-else class="hello" v-for="item in data"
             :key="item.area">
           <router-link
             :to="{ name: 'detailsComp', params: { area: item.area } }"
@@ -41,6 +44,7 @@ export default {
     let data = ref(null);
     let countrySearch = ref("");
     let countryCollection = ref(null);
+    const isLoading = ref(true);
     
    watch(countrySearch, function(){
     countryCollection.value = data.value.filter(a =>{
@@ -53,6 +57,7 @@ export default {
     
     async function onLoad () {
       await store.dispatch("getDataActions");
+      isLoading.value = false
       data.value = store.getters.getData;
       // console.log(data.value, "data");
       // console.log(store.getters.getData, "store");
@@ -117,10 +122,17 @@ a{
   text-decoration: none;
 }
 
+.isloading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: o auto;
+  font-weight: 700;
+  font-size: 24px;
+}
 
-/* img{
-  transition: 1.5 ease-out;
-} */
+
+
 
 img:hover{
   box-shadow: 2px 2px 2px black;
