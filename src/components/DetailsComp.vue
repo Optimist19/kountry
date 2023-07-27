@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div class="balls1"></div>
-    <div class="balls2"></div>
-    <div class="balls3"></div>
-
+    <div class="balls-con">
+      <div class="balls1"></div>
+      <div class="balls2"></div>
+      <div class="balls3"></div>
+      <div class="balls4"></div>
+    </div>
     <ul v-if="result"> 
       <li>
         <span>Name:</span> {{ result.name.common }}
@@ -64,7 +66,8 @@
 
       <li>
         <span>Borders:</span>
-        <label v-for="border in result.borders" :key="border">{{ border }}, </label>
+        <label v-for="border in result.borders" :key="border">{{ result.borders }}, </label> 
+        <!-- The border has been removed from the api -->
       </li>
     </ul>
   </div>
@@ -117,6 +120,10 @@ export default {
 </script>
 
 <style scoped>
+.balls-con{
+  position: absolute;
+}
+
 span{
   color: red;
 }
@@ -166,6 +173,7 @@ ul{
   }
   50%{
     opacity: 0.5;
+    left: 10vw;
   }
   100%{
     top: 597px;
@@ -192,7 +200,7 @@ ul{
 @keyframes balls2 {
   0%{
     top: 500px;
-    left: 25vw;
+    left: 30vw;
     opacity: 1;
   }
   50%{
@@ -203,7 +211,7 @@ ul{
   100%{
     top: 0;
     opacity: 0;
-    left: 25vw;
+    left: 20vw;
   }
 }
 
@@ -228,12 +236,76 @@ ul{
   50%{
     top: 250px;
     opacity: 0.5;
-    left: 45vw;
+    left: 65vw;
   }
   100%{
     top: 0;
     opacity: 0;
+    left: 85vw;
+  }
+}
+.balls4{
+  height: 80px;
+  width: 80px;
+  background-color: rgb(4, 17, 206);
+  border-radius: 50%;
+  position: relative;
+  animation-name: balls4;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  transition: transform 0.5s ease-in
+}
+
+@keyframes balls4 {
+  10%{
+    top: 500px;
     left: 45vw;
+    /* opacity: 1; */
+  }
+  20%{
+    top: 200px;
+    left: 20vw;
+    /* opacity: 1; */
+  }
+  30%{
+    top: 500px;
+    left: 35vw;
+    /* opacity: 1; */
+  }
+  40%{
+    bottom: 250px;
+    right: 20vw;
+    /* opacity: 1; */
+  }
+  50%{
+    top: 0;
+    opacity: 0.5;
+    left: 30vw;
+  }
+  60%{
+    top: 10vh;
+    opacity: 0.2;
+    right: 10vw;
+  }
+  70%{
+    bottom: 300px;
+    opacity: 0.8;
+    left: 55vw;
+  }
+  80%{
+    top: 0;
+    opacity: 0;
+    left: 45vw;
+  }
+  90%{
+    top: 15vh;
+    opacity: 1;
+    left: 55vw;
+  }
+  100%{
+    top: 0;
+    opacity: 0.5;
+    left: 6vw;
   }
 }
 </style>
